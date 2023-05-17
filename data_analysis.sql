@@ -1,7 +1,3 @@
-# sql-challenge
-Module 9 Challenge SQL modeling, engineering and analysis
-Data Analysis Queries: 
-
 --1. list the employee number, last name, first name, sex, and salary of each employee.
 SELECT 
 first_name, last_name, sex, salary 
@@ -47,12 +43,12 @@ SELECT dept_emp.emp_no, last_name, first_name
 FROM employees 
 INNER JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
 WHERE dept_emp.emp_no IN ( 
-    SELECT emp_no FROM dept_emp 
-    INNER JOIN departments ON dept_emp.dept_no = departments.dept_no
-    WHERE departments.dept_no = ( 
-        SELECT dept_no FROM departments WHERE dept_name = 'Sales'
-        )
-    )    
+	SELECT emp_no FROM dept_emp 
+	INNER JOIN departments ON dept_emp.dept_no = departments.dept_no
+	WHERE departments.dept_no = ( 
+		SELECT dept_no FROM departments WHERE dept_name = 'Sales'
+		)
+	)	
 
 
 --7. List each employee in the Sales and Development departments, including their employee number, 
@@ -61,9 +57,9 @@ SELECT employees.emp_no, last_name, first_name, dept_name FROM employees
 INNER JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
 INNER JOIN departments ON dept_emp.dept_no = departments.dept_no
 WHERE dept_name IN (
-    SELECT dept_name FROM departments
-    WHERE dept_name = 'Sales' OR dept_name = 'Development'
-    )
+	SELECT dept_name FROM departments
+	WHERE dept_name = 'Sales' OR dept_name = 'Development'
+	)
 
 
 --8. List the frequency counts, in descending order, of all the employee last names 
@@ -72,4 +68,3 @@ SELECT last_name, count(last_name) as last_name_counts
 FROM employees 
 GROUP BY last_name
 ORDER BY last_name_counts DESC;
-
